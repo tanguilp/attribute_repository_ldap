@@ -28,7 +28,6 @@ defmodule AttributeRepositoryLdap.MixProject do
       {:attribute_repository, path: "../attribute_repository"},
       {:ldapoolex, path: "../ldapoolex"},
       {:nimble_parsec, "~> 0.5"},
-      {:timex, "~> 3.1"}, # needed to parse LDAP ISO8601 _basic_ datetime
       {:dialyxir, "~> 1.0.0-rc.4", only: [:dev], runtime: false},
       {:ex_doc, "~> 0.19", only: :dev, runtime: false}
     ]
