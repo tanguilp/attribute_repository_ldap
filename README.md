@@ -14,8 +14,8 @@ end
 
 ## Usage
 
-This modules relies on `LDAPoolex` for create and maintaining a pool of connections to LDAP
-servers. One shalle therefore configure it's server in the relevant configuration files. Example:
+This modules relies on `LDAPoolex` to create and maintain a pool of connections to LDAP
+servers. One shall therefore configure it's server in the relevant configuration files. Example:
 
 ```elixir
 use Mix.Config
@@ -38,6 +38,13 @@ config :ldapoolex, pools: [
   ]
 ]
 ```
+
+You can also launch a pool manually (see `LDAPoolex` documentation) since this library uses
+the pool's name.
+
+This library uses type information of `LDAPoolex`'s loaded pool's schema. If the schema is
+not loaded (either because `load_schema: false` was set or schema could not be loaded) all
+attributes will be considered multi-valued and of `String.t()` type.
 
 ## Resource id
 
