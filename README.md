@@ -7,7 +7,7 @@ LDAP implementation of `AttributeRepository`
 ```elixir
 def deps do
   [
-    {:attribute_repository_ldap, github: "tanguilp/attribute_repository_ldap", tag: "master"}
+    {:attribute_repository_ldap, github: "tanguilp/attribute_repository_ldap", tag: "v0.1.1"}
   ]
 end
 ```
