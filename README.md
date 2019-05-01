@@ -67,6 +67,8 @@ default
 - [x] `AttributeRepository.Read`
 - [ ] `AttributeRepository.Write`
 - [x] `AttributeRepository.Search`
+- [x] `AttributeRepository.SupervisedStart`
+- [ ] `AttributeRepository.Start`
 
 ## Supported attribute types
 
