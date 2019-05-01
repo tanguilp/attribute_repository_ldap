@@ -23,6 +23,7 @@ defmodule AttributeRepositoryLdap do
 
   alias AttributeRepository.Search.AttributePath
 
+  @behaviour AttributeRepository.SupervisedStart
   @behaviour AttributeRepository.Read
   @behaviour AttributeRepository.Search
 
@@ -30,6 +31,12 @@ defmodule AttributeRepositoryLdap do
   @data_type_integer "1.3.6.1.4.1.1466.115.121.1.27"
   @data_type_generalized_time "1.3.6.1.4.1.1466.115.121.1.24"
   @data_type_octet_string "1.3.6.1.4.1.1466.115.121.1.40"
+
+  @impl AttributeRepository.SupervisedStart
+
+  def start_link(init_opts) do
+    LDAPoolex.start_link(init_opts[:name], init_opts)
+  end
 
   @impl AttributeRepository.Read
 
