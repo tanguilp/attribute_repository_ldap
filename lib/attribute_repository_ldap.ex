@@ -52,10 +52,12 @@ defmodule AttributeRepositoryLdap do
           end
       end
 
+    # FIXME: handle error case
     LDAPoolex.search(run_opts[:instance],
       base: to_charlist(resource_id),
       filter: :eldap.present('objectClass'),
-      attributes: attribute_list
+      attributes: attribute_list,
+      scope: :eldap.baseObject()
     )
     |> process_eldap_search_result(run_opts)
     |> case do
@@ -84,20 +86,17 @@ defmodule AttributeRepositoryLdap do
 
     eldap_filter = build_eldap_filter(filter)
 
-    IO.inspect(eldap_filter)
-
     LDAPoolex.search(run_opts[:instance],
-      base: to_charlist(run_opts[:base]),
+      base: to_charlist(run_opts[:base_dn]),
       scope: run_opts[:search_scope] || :eldap.singleLevel(),
       filter: eldap_filter,
       attributes: attribute_list
     )
     |> case do
       {:eldap_search_result, _, _} = result ->
-        process_eldap_search_result(result, run_opts)
+        {:ok, process_eldap_search_result(result, run_opts)}
 
       {:error, reason} = error ->
-        IO.inspect(error)
         {:error, AttributeRepository.ReadError.exception(inspect(reason))}
     end
   end
